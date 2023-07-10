@@ -3,24 +3,48 @@
 	<meta name="description" content="About this app" />
 </svelte:head>
 
-<div class="text-column">
-	<h1>About this app</h1>
+<section class="main-content">
+	<div class="text-column">
+		<h1>About this app</h1>
 
-	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
-	</p>
+		<p>
+			This is a <a
+				class="about-link"
+				target="_blank"
+				href="https://kit.svelte.dev"
+				rel="noopener noreferrer">SvelteKit</a
+			> app built for simulating rocket launches with different environmental and engineering factors
+			(e.g. wind speed, air resistence, weight, propulsion, etc.).
+		</p>
+		<p>
+			The application was created by <a
+				class="about-link"
+				href="https://github.com/patrick-long"
+				target="_blank"
+				rel="noopener noreferrer">Patrick Long</a
+			>, with an
+			<a
+				class="about-link"
+				href="https://github.com/patrick-long/launch-simulator-api"
+				target="_blank"
+				rel="noopener noreferrer">API</a
+			> written in C++ to ensure efficient and precise calculations.
+		</p>
+	</div>
+</section>
 
-	<pre>npm create svelte@latest</pre>
+<style>
+	.main-content {
+		display: flex;
+		flex: 1;
+		height: 100%;
+		width: 100%;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.75)),
+			url('$lib/images/about.png');
+		background-size: cover;
+	}
 
-	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
-	</p>
-
-	<p>
-		The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading and form handling. Try
-		using it with JavaScript disabled!
-	</p>
-</div>
+	.about-link {
+		color: var(--color-theme-2);
+	}
+</style>

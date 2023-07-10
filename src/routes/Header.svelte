@@ -1,35 +1,50 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
+
+	$: path = $page.url.pathname;
 </script>
 
 <header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
-	</div>
+	<div class="corner" />
 
-	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Simulator</a>
+	<nav class="nav-container">
+		<ul class="route-options">
+			<li class="route-option">
+				<a
+					class="route-option-link
+						{path === '/' || path === '' ? 'selected' : ''}
+					"
+					href="/"
+				>
+					Home
+				</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
+			<li class="route-option">
+				<a
+					class="route-option-link
+						{path === '/simulator' ? 'selected' : ''}
+					"
+					href="/simulator"
+				>
+					Simulator
+				</a>
+			</li>
+			<li class="route-option">
+				<a
+					class="route-option-link
+						{path === '/about' ? 'selected' : ''}
+					"
+					href="/about"
+				>
+					About
+				</a>
 			</li>
 		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
+		<a target="_blank" href="https://github.com/patrick-long/launch-simulator">
 			<img src={github} alt="GitHub" />
 		</a>
 	</div>
@@ -39,11 +54,14 @@
 	header {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
+		position: fixed;
+		width: 100%;
 	}
 
 	.corner {
-		width: 3em;
-		height: 3em;
+		width: 4rem;
+		height: 4rem;
 	}
 
 	.corner a {
@@ -55,72 +73,64 @@
 	}
 
 	.corner img {
-		width: 2em;
-		height: 2em;
+		width: 3rem;
+		height: 3rem;
 		object-fit: contain;
 	}
 
-	nav {
+	.nav-container {
 		display: flex;
 		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
+		height: 3rem;
 	}
 
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
-
-	path {
-		fill: var(--background);
-	}
-
-	ul {
-		position: relative;
+	.route-options {
 		padding: 0;
 		margin: 0;
-		height: 3em;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		gap: 1rem;
 		list-style: none;
-		background: var(--background);
-		background-size: contain;
 	}
 
-	li {
+	.route-option {
+		display: flex;
+		align-items: center;
 		position: relative;
 		height: 100%;
 	}
 
-	li[aria-current='page']::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
-	}
-
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 0.5rem;
+	.route-option-link {
 		color: var(--color-text);
-		font-weight: 700;
-		font-size: 0.8rem;
+		font-weight: 500;
+		font-size: 1.25rem;
 		text-transform: uppercase;
-		letter-spacing: 0.1em;
+		letter-spacing: 0.25rem;
+		text-indent: 0.25rem;
 		text-decoration: none;
 		transition: color 0.2s linear;
 	}
 
-	a:hover {
+	.route-option-link.selected,
+	.route-option-link:hover {
 		color: var(--color-theme-1);
+	}
+
+	.route-option-link::after {
+		content: '';
+		height: 1px;
+		width: 75%;
+		background-color: var(--color-theme-1);
+		position: absolute;
+		top: 90%;
+		right: 12.5%;
+		opacity: 0;
+		transition: opacity 0.2s linear;
+	}
+
+	.route-option-link.selected::after,
+	.route-option-link:hover::after {
+		opacity: 1;
 	}
 </style>
