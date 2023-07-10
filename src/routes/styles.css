@@ -5,13 +5,14 @@
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
 	--color-bg-0: rgb(202, 216, 228);
-	--color-bg-1: hsl(209, 36%, 86%);
+	--color-bg-1: hsl(215, 100%, 98%);
 	--color-bg-2: hsl(224, 44%, 95%);
 	--color-theme-1: #64afff;
 	--color-theme-2: #4075a6;
-	--color-text: rgba(255, 255, 255, 0.8);
+	--color-text: rgba(255, 255, 255, 0.9);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
+	--button-border-radius: 2rem;
 	font-family: var(--font-body);
 	color: var(--color-text);
 }
@@ -104,4 +105,28 @@ button:focus:not(:focus-visible) {
 	position: absolute;
 	width: 1px;
 	white-space: nowrap;
+}
+
+.btn-link {
+	border: 1px solid var(--color-bg-2);
+	border-radius: 2rem;
+	padding: 0.5rem 1rem;
+	background-color: var(--color-bg-0);
+	color: var(--color-text);
+	text-transform: uppercase;
+	letter-spacing: 0.25rem;
+}
+
+.btn-link:hover {
+	text-decoration: none;
+}
+
+.btn-link.primary {
+	background-color: var(--color-theme-2);
+	border: 1px solid var(--color-theme-1);
+}
+
+.btn-link.secondary {
+	background-color: var(--color-bg-2);
+	color: grey;
 }
